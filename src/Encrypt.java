@@ -2,12 +2,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-/**
- *
- * @author Jannick
- */
+
 public class Encrypt {
 
     public static void main(String[] args) {
@@ -29,7 +24,7 @@ public class Encrypt {
         byte[] inhaltVerschlüsselt = Invert(inhaltUnverschlüsselt);
         
         //(Über-) Schreiben der Datei
-        WriteFile(inhaltVerschlüsselt, filepath);
+        WriteFile(inhaltVerschlüsselt, filepath, datei);
                 
     }
             
@@ -56,10 +51,9 @@ public class Encrypt {
         return inhaltVerschlüsselt;
     }
 
-    public static void WriteFile(byte[] inhaltUnverschlüsselt, String filepath){
+    public static void WriteFile(byte[] inhaltUnverschlüsselt, String filepath, File Ursprungsdatei){
         try{
-            Path path = Paths.get(filepath);
-            Files.write(path,inhaltUnverschlüsselt);
+            Files.write(Ursprungsdatei.toPath(),inhaltUnverschlüsselt);
             System.out.println("Datei erfolgreich überschrieben.");
         }
         catch(IOException e) {
